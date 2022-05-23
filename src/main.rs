@@ -15,7 +15,7 @@ impl eframe::epi::App for AppMain {
 
     fn setup(
         &mut self,
-        _ctx: &eframe::egui::Context,
+        _ctx: &eframe::egui::CtxRef,
         _frame: &eframe::epi::Frame,
         _storage: Option<&dyn eframe::epi::Storage>,
     ) {
@@ -23,7 +23,7 @@ impl eframe::epi::App for AppMain {
 
     fn save(&mut self, _storage: &mut dyn eframe::epi::Storage) {}
 
-    fn update(&mut self, ctx: &eframe::egui::Context, _frame: &eframe::epi::Frame) {
+    fn update(&mut self, ctx: &eframe::egui::CtxRef, _frame: &eframe::epi::Frame) {
         eframe::egui::containers::panel::CentralPanel::default().show(ctx, |ui| {
             Plot::new("diagonal line")
                 .data_aspect(1.0)
