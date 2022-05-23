@@ -3,25 +3,27 @@
 use eframe::egui::widgets::plot::{Line, Plot, Value, Values};
 
 fn main() {
-    eframe::run_native(
-        "test",
-        eframe::NativeOptions::default(),
-        Box::new(|cc| Box::new(AppMain::new(cc))),
-    );
+    eframe::run_native(Box::new(AppMain {}), eframe::NativeOptions::default());
 }
 
 pub struct AppMain {}
 
-impl AppMain {
-    fn new(_cc: &eframe::CreationContext) -> AppMain {
-        AppMain {}
+impl eframe::epi::App for AppMain {
+    fn name(&self) -> &str {
+        "test"
     }
-}
 
-impl eframe::App for AppMain {
-    fn save(&mut self, _storage: &mut dyn eframe::Storage) {}
+    fn setup(
+        &mut self,
+        _ctx: &eframe::egui::Context,
+        _frame: &eframe::epi::Frame,
+        _storage: Option<&dyn eframe::epi::Storage>,
+    ) {
+    }
 
-    fn update(&mut self, ctx: &eframe::egui::Context, _frame: &mut eframe::Frame) {
+    fn save(&mut self, _storage: &mut dyn eframe::epi::Storage) {}
+
+    fn update(&mut self, ctx: &eframe::egui::Context, _frame: &eframe::epi::Frame) {
         eframe::egui::containers::panel::CentralPanel::default().show(ctx, |ui| {
             Plot::new("diagonal line")
                 .data_aspect(1.0)
